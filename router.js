@@ -5,8 +5,9 @@ module.exports = function(app,server,passport){
             next();
             return;
         }
-        passport.autheniticate('twitter')(req,res,next);
+        res.redirect('/twitter')    
     })
+    app.get('/twitter',passport.authenticate('twitter'))
     app.get('/oauth',passport.authenticate('twitter',{
         successRedirect:'/',
         failureRedirect:'/error'
@@ -14,4 +15,5 @@ module.exports = function(app,server,passport){
     app.get('/error',function(req,res,next){
         res.send("失敗じゃ")
     })
+    console.log("ルーティング完了")
 }

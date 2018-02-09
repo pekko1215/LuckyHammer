@@ -1,10 +1,9 @@
-const passport = require('passport');
 const TwitterStrategy = require('passport-twitter')
-
-module.exports = function(app){
+const session = require('express-session')
+module.exports = function(app,passport){
 
     passport.serializeUser(function(user,done){
-        done(null,user.id);
+        done(null,user);
     })
 
     passport.deserializeUser(function(obj,done){
@@ -21,8 +20,8 @@ module.exports = function(app){
             })
         }
     ))
+    app.use(session({secret:'cattower'}))
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(session({secret:'cattower'}))
     return passport
 }
