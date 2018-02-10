@@ -1,7 +1,6 @@
 module.exports = function(app,server,passport){
     app.get('/',function(req,res,next){
         if(req.user){
-            console.log(req.user);
             next();
             return;
         }
