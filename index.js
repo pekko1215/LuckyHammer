@@ -9,4 +9,4 @@ require('./router')(app,http,passport);
 app.use('/',express.static(__dirname + '/public'))
 
 app.listen(3002)
-console.log("Start Server" + new Date);
+console.log("Start Server at " + new Date);
