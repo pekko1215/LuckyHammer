@@ -1,21 +1,24 @@
 /**
  * Created by pekko1215 on 2018/02/10.
  */
-module.exports = function (app,socket,sessionStore) {
-    var io = socket.listen(app);
-    var {parseCookie} = require('connect').utils;
+module.exports = function (app,http,socket,sessionStore) {
+    const cookieParser = require('cookie-parser');
+    const parseCookie = cookieParser('cattower');
 
-    io.configure(function(){
-        io.set('authorization',function(req,next){
-            if(req.headers.cookie){
-                var cookie = req.headers.cookie;
-                var sessionID = parseCookie(cookie)['connect.sid'];
-                req.sessionID = sessionID
-            }else{
-                return next('Not Found Cookie',false);
-            }
-            next(null,true);
-        })
+    var io = socket.listen(http);
+
+    io.set('authorization',function(req,next){
+        console.log(req)
+        if(req.headers.cookie){
+            var cookie = req.headers.cookie;
+            parseCookie(req,null,function(err){
+                var sessionID = req.signedCookies['connect.sid']
+                req.sessionID = sessionID;
+                next(null,true)
+            })
+        }else{
+            return next('Not Found Cookie',false);
+        }
     })
     io.sockets.on('connection', function (socket) {
         console.log('sessionID ', socket.handshake.sessionID);
