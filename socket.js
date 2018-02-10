@@ -7,24 +7,15 @@ module.exports = function (app,http,socket,sessionStore) {
 
     var io = socket.listen(http);
 
-    io.set('authorization',function(req,next){
-        console.log(req)
-        if(req.headers.cookie){
-            var cookie = req.headers.cookie;
-            parseCookie(req,null,function(err){
-                var sessionID = req.signedCookies['connect.sid']
-                req.sessionID = sessionID;
-                next(null,true)
-            })
-        }else{
-            return next('Not Found Cookie',false);
-        }
-    })
     io.sockets.on('connection', function (socket) {
-        console.log('sessionID ', socket.handshake.sessionID);
-        var handshake = socket.handshake;
-        // セッションのデータにアクセス
-        console.log('sessionID is', handshake.sessionID);
+        const {handshake} = socket;
+        var {cookie} = handshake.headers;
+
+        parseCookie(handshake,null,function(err){
+            var sessionID = req.signedCookies['connect.sid']
+            handshake.sessionID = sessionID;
+            console.log('sessionID ', socket.handshake.sessionID);
+        })
 
         // 1 分ごとにセッションを更新するループ
         var intervalID = setInterval(function () {
