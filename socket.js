@@ -12,7 +12,7 @@ module.exports = function (app,http,socket,sessionStore) {
         var {cookie} = handshake.headers;
 
         parseCookie(handshake,null,function(err){
-            var sessionID = req.signedCookies['connect.sid']
+            var sessionID = handshake.signedCookies['connect.sid']
             handshake.sessionID = sessionID;
             console.log('sessionID ', socket.handshake.sessionID);
         })
