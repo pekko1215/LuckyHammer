@@ -1,6 +1,6 @@
 const TwitterStrategy = require('passport-twitter')
 const session = require('express-session')
-module.exports = function(app,passport){
+module.exports = function(app,passport,sessionStore){
 
     passport.serializeUser(function(user,done){
         done(null,user);
@@ -20,7 +20,7 @@ module.exports = function(app,passport){
             })
         }
     ))
-    app.use(session({secret:'cattower'}))
+    app.use(session({secret:'cattower',store:sessionStore}))
     app.use(passport.initialize());
     app.use(passport.session());
     return passport
