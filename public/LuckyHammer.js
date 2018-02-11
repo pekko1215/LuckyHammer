@@ -44,11 +44,29 @@ $(()=>{
     socket.on('tweet', function(data) {
         data.created_at = (new Date(data.created_at)).toLocaleString()
         dataTable.fnAddData(data);
-        //dataTable.fnSort([2,"desc"])
     });
     window.socket = socket
-
+    var timer=null;
     $('#start').click(()=>{
-      socket.emit('search',{target:$('#target').val()})
+        if(timer) {
+            clearInterval(timer);
+        }
+        socket.emit('search',{target:$('#target').val()})
+        $('#start').prop('disabled',true);
+        $('#stop').prop('disabled',false);
+        var interval = 60
+        var countDown = ()=>{
+            $('#stop').text(`${interval}後に自動停止します。`);
+            interval--;
+            if(!interval){
+                $('#stop').click();
+            }
+        }
+        timer = setInterval(countDown,1000)
+    })
+    $('#stop',()=>{
+        $('#stop').text('停止');
+        clearInterval(timer);
+        socket.emit('stop');
     })
 })
