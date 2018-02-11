@@ -40,7 +40,7 @@ $(() => {
             })
             $nRow.click(()=>{
                 socket.emit('oembed',aData.id_str,(resp)=>{
-                    console.log(resp)
+                    $('#embedContainer').html(resp.html)
                 })
             })
         }
