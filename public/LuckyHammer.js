@@ -84,8 +84,10 @@ $(() => {
         $('#stop').prop('disabled', true);
     })
     $('#truemedia').click(()=>{
-        if(trueMedia.find((m)=>{
-            return m.id_str == currentMedia.id_str
+        if(falseMedia.find((m)=>{
+                return m.id_str == currentMedia.id_str
+            })||trueMedia.find((m)=>{
+                return m.id_str == currentMedia.id_str
             })){
             return;
         }
@@ -98,6 +100,8 @@ $(() => {
     $('#falsemedia').click(()=>{
         if(falseMedia.find((m)=>{
                 return m.id_str == currentMedia.id_str
+            })||trueMedia.find((m)=>{
+                return m.id_str == currentMedia.id_str
             })){
             return;
         }
@@ -107,7 +111,25 @@ $(() => {
         }))
         falseMedia.push(currentMedia);
     })
+    $('#ruleSelect').change(()=>{
+        $('#deleterule').prop('disabled',!$('#ruleSelect').val())
+    })
     $('#deleterule').click(()=>{
-        console.log($('#ruleSelect').val())
+        console.log($('#ruleSelect').val());
+        var index;
+        if((index = falseMedia.findIndex((m)=>{
+                return m.id_str === currentMedia.id_str
+            }))!==-1){
+            $(`option:contains('${$('#ruleSelect').val()}')`).remove();
+            falseMedia.splice(index,1);
+            return
+        }
+        if((index = trueMedia.findIndex((m)=>{
+                return m.id_str === currentMedia.id_str
+            }))!==-1){
+            $(`option:contains('${$('#ruleSelect').val()}')`).remove();
+            trueMedia.splice(index,1);
+            return
+        }
     })
 })

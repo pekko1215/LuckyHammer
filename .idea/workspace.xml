@@ -4,7 +4,6 @@
     <list default="true" id="bd1550ef-51d5-4132-9e15-83be52a3660a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/LuckyHammer.js" afterPath="$PROJECT_DIR$/public/LuckyHammer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -105,8 +104,8 @@
       <file leaf-file-name="LuckyHammer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/LuckyHammer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="108" column="6" lean-forward="true" selection-start-line="108" selection-start-column="6" selection-end-line="108" selection-end-column="6" />
+            <state relative-caret-position="348">
+              <caret line="120" column="39" lean-forward="false" selection-start-line="120" selection-start-column="39" selection-end-line="120" selection-end-column="39" />
               <folding>
                 <element signature="e#0#46#0" expanded="false" />
                 <element signature="e#190#708#0" expanded="false" />
@@ -336,7 +335,7 @@
       <updated>1518143481175</updated>
       <workItem from="1518143483150" duration="4016000" />
       <workItem from="1518160687141" duration="378000" />
-      <workItem from="1518180734083" duration="21655000" />
+      <workItem from="1518180734083" duration="22206000" />
     </task>
     <task id="LOCAL-00001" summary="oauth">
       <created>1518183012359</created>
@@ -429,11 +428,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518357218621</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="・ruleDelete">
+      <created>1518357631052</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1518357631052</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26049000" />
+    <option name="totallyTimeSpent" value="26600000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="669" y="0" width="938" height="867" extended-state="0" />
@@ -478,7 +484,8 @@
     <MESSAGE value="・selectにうまく追加されないバグ修正&#10;・maxwidthいらんわこれ" />
     <MESSAGE value="・ボタンがずれる" />
     <MESSAGE value="・selectじゃなくてoptionだｵﾚﾉﾊﾞｶﾊﾞｶﾊﾞｶﾊﾞｶ" />
-    <option name="LAST_COMMIT_MESSAGE" value="・selectじゃなくてoptionだｵﾚﾉﾊﾞｶﾊﾞｶﾊﾞｶﾊﾞｶ" />
+    <MESSAGE value="・ruleDelete" />
+    <option name="LAST_COMMIT_MESSAGE" value="・ruleDelete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -687,8 +694,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/LuckyHammer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="108" column="6" lean-forward="true" selection-start-line="108" selection-start-column="6" selection-end-line="108" selection-end-column="6" />
+        <state relative-caret-position="348">
+          <caret line="120" column="39" lean-forward="false" selection-start-line="120" selection-start-column="39" selection-end-line="120" selection-end-column="39" />
           <folding>
             <element signature="e#0#46#0" expanded="false" />
             <element signature="e#190#708#0" expanded="false" />
