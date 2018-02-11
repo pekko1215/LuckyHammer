@@ -11,6 +11,11 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
     <title>LuckyHammer</title>
+    <style>
+      tbody{
+        font-size:7px;
+      }
+    </style>
 </head>
 
 <body>
@@ -22,9 +27,9 @@
             <form class="mui-form">
 				<legend>監視対象</legend>
 				<div class="mui-textfield">
-					<input type="text" placeholder="ユーザ名(@から始まるやつ)">
+					<input type="text" id="target" placeholder="ユーザ名(@から始まるやつ)">
 				</div>
-				<button type="button" class="mui-btn mui-btn--primary mui-btn--raised">監視開始</button>
+				<button type="button" id="start" class="mui-btn mui-btn--primary mui-btn--raised">監視開始</button>
 
                 <table id="list" width="100%">
                     <thead>
