@@ -57,16 +57,18 @@ $(()=>{
         var interval = 60
         var countDown = ()=>{
             $('#stop').text(`${interval}後に自動停止します。`);
-            interval--;
-            if(!interval){
+            if(!interval--){
                 $('#stop').click();
             }
         }
         timer = setInterval(countDown,1000)
+        countDown();
     })
-    $('#stop',()=>{
+    $('#stop').click(()=>{
         $('#stop').text('停止');
         clearInterval(timer);
         socket.emit('stop');
+        $('#start').prop('disabled',false);
+        $('#stop').prop('disabled',true);
     })
 })

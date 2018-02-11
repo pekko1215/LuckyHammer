@@ -14,7 +14,7 @@ module.exports = function(app,passport,sessionStore){
         require('./tokens').twitter,
         (token,tokenSecret,profile,done)=>{
             profile.twitter_token = token;
-            profile.displayName = profile.displayName.slice(8)
+            profile.displayName = profile.displayName
             profile.twitter_token_secret = tokenSecret;
             process.nextTick(()=>{
                 return done(null,profile)
