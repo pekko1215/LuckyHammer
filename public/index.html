@@ -6,47 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- load MUI -->
-    <link href="//cdn.muicss.com/mui-0.9.36/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.muicss.com/mui-0.9.36/css/mui.min.css" rel="stylesheet" type="text/css"/>
     <script src="//cdn.muicss.com/mui-0.9.36/js/mui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
     <title>LuckyHammer</title>
     <style>
-      tbody{
-        font-size:7px;
-      }
+        tbody {
+            font-size: 7px;
+        }
+        td{
+            cursor: pointer;
+        }
+        td:hover{
+            background-color:#ccaaaa;
+        }
     </style>
 </head>
 
 <body>
-    <!-- example content -->
-    <div class="mui-container">
-        <div class="mui-panel">
-            <h1>LuckyHammer</h1>
-            <h3>Twitterキャンペーン監視ツール</h3>
-            <form class="mui-form">
-				<legend>監視対象</legend>
-				<div class="mui-textfield">
-					<input type="text" id="target" placeholder="ユーザ名(@から始まるやつ)">
-				</div>
-				<button type="button" id="start" class="mui-btn mui-btn--primary mui-btn--raised">監視開始</button>
-                <button type="button" id="stop" disabled class="mui-btn mui-btn--danger mui-btn--raised">停止</button>
-                <table id="list" width="100%">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </form>
-        </div>
-        <div class="mui-panel">
-            <h2></h2>
-        </div>
+<!-- example content -->
+<div class="mui-container">
+    <div class="mui-panel">
+        <h1>LuckyHammer</h1>
+        <h3>Twitterキャンペーン監視ツール</h3>
+        <form class="mui-form">
+            <legend>監視対象</legend>
+            <div class="mui-textfield">
+                <input type="text" id="target" placeholder="ユーザ名(@から始まるやつ)">
+            </div>
+            <button type="button" id="start" class="mui-btn mui-btn--primary mui-btn--raised">監視開始</button>
+            <button type="button" id="stop" disabled class="mui-btn mui-btn--danger mui-btn--raised">停止</button>
+            <table id="list" width="100%">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </form>
     </div>
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-    <script src="LuckyHammer.js"></script>
+    <div class="mui-panel">
+        <h2></h2>
+    </div>
+</div>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="LuckyHammer.js"></script>
 </body>
 
 </html>
