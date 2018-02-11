@@ -15,11 +15,13 @@
         tbody {
             font-size: 7px;
         }
-        tr{
+
+        tr {
             cursor: pointer;
         }
-        td:hover{
-            background-color:#ccaaaa;
+
+        td:hover {
+            background-color: #ccaaaa;
         }
     </style>
 </head>
@@ -47,22 +49,33 @@
     </div>
     <div class="mui-panel">
         <h2>メディア詳細</h2>
-        <div id="embedContainer">
+        <div class="mui-container-fluid">
+            <div class="mui-row">
+                <div class="mui-col-md-6">
+                    <div id="embedContainer">
 
-        </div>
-        <button type="button" id="truemedia" class="mui-btn mui-btn--primary mui-btn--raised" disabled>監視対象に追加</button>
-        <button type="button" id="falsemedia" class="mui-btn mui-btn--danger mui-btn--raised" disabled>排除対象に追加</button>
-        <br>
-        <div class="mui-select">
-            <select>
-                <optgroup id="truemediaOption" label="--監視対象--">
+                    </div>
+                </div>
+                <div class="mui-col-md-6">
+                    <button type="button" id="truemedia" class="mui-btn mui-btn--primary mui-btn--raised" disabled>
+                        監視対象に追加
+                    </button>
+                    <button type="button" id="falsemedia" class="mui-btn mui-btn--danger mui-btn--raised" disabled>
+                        排除対象に追加
+                    </button>
+                    <div class="mui-select">
+                        <select>
+                            <optgroup id="truemediaOption" label="--監視対象--">
 
-                </optgroup>
-                <optgroup id="falsemediaOption" label="--除外対象--">
+                            </optgroup>
+                            <optgroup id="falsemediaOption" label="--除外対象--">
 
-                </optgroup>
-            </select>
-            <label>ルール</label>
+                            </optgroup>
+                        </select>
+                        <label>ルール</label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
