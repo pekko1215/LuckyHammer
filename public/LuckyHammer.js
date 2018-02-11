@@ -39,7 +39,9 @@ $(() => {
                 $td.append($img)
             })
             $nRow.click(()=>{
-                console.log(aData);
+                socket.emit('oembed',aData.id_str,(resp)=>{
+                    console.log(resp)
+                })
             })
         }
     });

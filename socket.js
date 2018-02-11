@@ -54,8 +54,8 @@ module.exports = function (app, http, socket, sessionStore) {
                 stream.destroy()
             }
         })
-        socket.on('oembed',function(url,next){
-            client.get('statuses/oembed',function (err,resp) {
+        socket.on('oembed',function(id,next){
+            client.get('statuses/oembed',{id:id},function (err,resp) {
                 if(err){
                     socket.emit('error',err);
                     return
