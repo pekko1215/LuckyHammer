@@ -91,7 +91,7 @@ $(() => {
         }
         console.log(currentMedia)
         $('#truemediaOption').append($('<select/>',{
-            text:currentMedia.entities.media.media_url_https
+            text:currentMedia.entities.media[0].media_url_https
         }))
         trueMedia.push(currentMedia);
     })
@@ -103,7 +103,7 @@ $(() => {
         }
         console.log(currentMedia)
         $('#falsemediaOption').append($('<select/>',{
-            text:currentMedia.entities.media.media_url_https
+            text:currentMedia.entities.media[0].media_url_https
         }))
         falseMedia.push(currentMedia);
     })
