@@ -1,35 +1,44 @@
 /**
  * Created by pekko1215 on 2018/02/10.
  */
+const twitter = require('twitter')
 module.exports = function (app,http,socket,sessionStore) {
-    const cookieParser = require('cookie-parser');
-    const parseCookie = cookieParser('cattower');
-
-    var io = socket.listen(http);
-
-    io.sockets.on('connection', function (socket) {
-        const {handshake} = socket;
-        var {cookie} = handshake.headers;
-
-        parseCookie(handshake,null,function(err){
-            var sessionID = handshake.signedCookies['connect.sid']
-            handshake.sessionID = sessionID;
-            console.log('sessionID ', socket.handshake.sessionID);
-        })
-
-        // 1 分ごとにセッションを更新するループ
-        var intervalID = setInterval(function () {
-            // 一度セッションを再読み込み
-            handshake.session.reload(function() {
-                // lastAccess と maxAge を更新
-                handshake.session.touch().save();
-            });
-        }, 1000 * 60);
-
-        socket.on('disconnect', function () {
-            console.log('sessionID is', handshake.sessionID, 'disconnected');
-            // セッションの更新を停止
-            clearInterval(intervalID);
-        });
+    const io = socket.listen(http);
+    io.use(function(socket,next){
+        console.log('use')
+        app.session(socket.request,socket.request.res,next);
     });
+    io.sockets.on('connection',function(socket){
+        console.log('connected')
+        var stream = null;
+        var tokens = require('./tokens').twitter;
+        var {session} = socket.request
+        
+        if(!session.passport){
+            return socket.disconnect()
+        }
+        var profile = session.passport.user
+        var client = new twitter({
+            consumer_key:tokens.consumerKey,
+            consumer_secret:tokens.consumerSecret,
+            access_token_key:profile.twitter_token,
+            access_token_secret:profile.twitter_token_secret
+        })
+        socket.on('search',(option)=>{
+          if(!option || !option.target){return}
+          if(stream){
+              stream.destroy()
+          }
+          client.get('users/show',{screen_name:option.target},(err,data)=>{
+            if(err){return}
+            client.stream('statuses/filter',{follow:data.id},function(_stream){
+              stream = _stream;
+              stream.on('data',(data)=>{
+                  if(data.retweeted_status){return}
+                  socket.emit('tweet',data);
+              })
+            })
+        })
+      }) 
+    })
 }

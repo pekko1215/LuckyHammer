@@ -14,13 +14,13 @@ module.exports = function(app,passport,sessionStore){
         require('./tokens').twitter,
         (token,tokenSecret,profile,done)=>{
             profile.twitter_token = token;
-            profile.twitter_token_srcret = tokenSecret;
+            profile.twitter_token_secret = tokenSecret;
             process.nextTick(()=>{
                 return done(null,profile)
             })
         }
     ))
-    app.use(session({secret:'cattower',store:sessionStore}))
+    app.use((app.session = session({secret:'cattower',store:sessionStore})))
     app.use(passport.initialize());
     app.use(passport.session());
     return passport

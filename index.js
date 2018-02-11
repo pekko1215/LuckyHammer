@@ -12,7 +12,7 @@ require('./router')(app,http,passport);
 app.use('/',express.static(__dirname + '/public'))
 
 
-require('./socket')(app,http,socket,sessionStore)
+require('./socket')(app,app.listen(3002),socket,sessionStore)
 
-app.listen(3002)
+//app.listen(3002)
 console.log("Start Server at " + new Date);

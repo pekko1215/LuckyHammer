@@ -23,8 +23,8 @@ $(()=>{
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
         }
     });
-    var socket = io.connect();
-    socket.on('msg', function(data) {
+    var socket = io.connect('/');
+    socket.on('tweet', function(data) {
         console.log(data);
     });
     window.socket = socket
