@@ -2,6 +2,9 @@
  * Created by yuto-note on 2018/02/09.
  */
 $(() => {
+    var falseMedia = [];
+    var trueMedia = [];
+    var currentMedia;
     var dataTable = $('#list').dataTable({
         "columns": [{
             "title": "ユーザ名",
@@ -40,7 +43,10 @@ $(() => {
             })
             $nRow.click(()=>{
                 socket.emit('oembed',aData.id_str,(resp)=>{
-                    $('#embedContainer').html(resp.html)
+                    $('#embedContainer').html(resp.html);
+                    $('#truemedia').prop('disabled',false);
+                    $('#falsemedia').prop('disabled',false);
+                    currentMedia = aData;
                 })
             })
         }
@@ -76,5 +82,27 @@ $(() => {
         socket.emit('stop');
         $('#start').prop('disabled', false);
         $('#stop').prop('disabled', true);
+    })
+    $('#truemedia').click(()=>{
+        if(trueMedia.find((m)=>{
+            return m.id_str == currentMedia.id_str
+            })){
+            return;
+        }
+        $('#truemediaOption').append($('<select/>',{
+            text:currentMedia.media.media_url_https
+        }))
+        trueMedia.push(currentMedia);
+    })
+    $('#falsemedia').click(()=>{
+        if(falseMedia.find((m)=>{
+                return m.id_str == currentMedia.id_str
+            })){
+            return;
+        }
+        $('#falsemediaOption').append($('<select/>',{
+            text:currentMedia.media.media_url_https
+        }))
+        falseMedia.push(currentMedia);
     })
 })
