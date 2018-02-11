@@ -132,6 +132,7 @@ $(() => {
         }
     })
     $.fn.dataTable.ext.search.push(function(setting,data,dataIndex){
+        console.log(data)
         if(trueMedia.length){
             return trueMedia.some((m)=>{
                 return data.entities.media[0].media_url_https === m.entities.media[0].media_url_https;
