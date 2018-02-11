@@ -38,7 +38,7 @@ $(() => {
                 return
             }
             aData.entities.media.forEach((media) => {
-                var $img = $('<img>', {src: media.media_url_https, width: "32px"});
+                var $img = $('<img/>', {src: media.media_url_https, width: "32px"});
                 $td.append($img)
             })
             $nRow.click(()=>{
@@ -111,25 +111,34 @@ $(() => {
         }))
         falseMedia.push(currentMedia);
     })
-    $('#ruleSelect').change(()=>{
-        $('#deleterule').prop('disabled',!$('#ruleSelect').val())
-    })
     $('#deleterule').click(()=>{
-        console.log($('#ruleSelect').val());
+        var selectName = $('#ruleSelect').val();
         var index;
         if((index = falseMedia.findIndex((m)=>{
-                return m.id_str === currentMedia.id_str
+                var arr = m.entities.media[0].media_url_https.split('/');
+                return  arr[arr.length-1]=== selectName
             }))!==-1){
             $(`option:contains('${$('#ruleSelect').val()}')`).remove();
             falseMedia.splice(index,1);
             return
         }
         if((index = trueMedia.findIndex((m)=>{
-                return m.id_str === currentMedia.id_str
+                var arr = m.entities.media[0].media_url_https.split('/');
+                return  arr[arr.length-1]=== selectName
             }))!==-1){
             $(`option:contains('${$('#ruleSelect').val()}')`).remove();
             trueMedia.splice(index,1);
             return
         }
+    })
+    $.fn.dataTable.ext.search.push(function(setting,data,dataIndex){
+        if(trueMedia.length){
+            return trueMedia.some((m)=>{
+                return data.entities.media[0].media_url_https === m.entities.media[0].media_url_https;
+            })
+        }
+        return falseMedia.every((m)=>{
+            return data.entities.media[0].media_url_https !== m.entities.media[0].media_url_https;
+        })
     })
 })
