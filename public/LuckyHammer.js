@@ -89,9 +89,9 @@ $(() => {
             })){
             return;
         }
-        console.log(currentMedia)
-        $('#truemediaOption').append($('<select/>',{
-            text:currentMedia.entities.media[0].media_url_https
+        var arr = currentMedia.entities.media[0].media_url_https.split('/');
+        $('#falsemediaOption').append($('<option/>',{
+            text:arr[arr.length-1]
         }))
         trueMedia.push(currentMedia);
     })
@@ -101,9 +101,9 @@ $(() => {
             })){
             return;
         }
-        console.log(currentMedia)
-        $('#falsemediaOption').append($('<select/>',{
-            text:currentMedia.entities.media[0].media_url_https
+        var arr = currentMedia.entities.media[0].media_url_https.split('/');
+        $('#falsemediaOption').append($('<option/>',{
+            text:arr[arr.length-1]
         }))
         falseMedia.push(currentMedia);
     })
