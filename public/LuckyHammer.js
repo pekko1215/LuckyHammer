@@ -90,7 +90,7 @@ $(() => {
             return;
         }
         var arr = currentMedia.entities.media[0].media_url_https.split('/');
-        $('#falsemediaOption').append($('<option/>',{
+        $('#truemediaOption').append($('<option/>',{
             text:arr[arr.length-1]
         }))
         trueMedia.push(currentMedia);
@@ -106,5 +106,8 @@ $(() => {
             text:arr[arr.length-1]
         }))
         falseMedia.push(currentMedia);
+    })
+    $('#deleterule').click(()=>{
+        console.log($('#ruleSelect').val())
     })
 })
