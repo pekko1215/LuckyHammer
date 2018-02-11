@@ -2,7 +2,7 @@
  * Created by yuto-note on 2018/02/09.
  */
 $(()=>{
-    $('#list').dataTable({
+    var dataTable = $('#list').dataTable({
         "columns":[{
             "title":"ユーザ名",
             "orderable":"false",
@@ -26,6 +26,7 @@ $(()=>{
     var socket = io.connect('/');
     socket.on('tweet', function(data) {
         console.log(data);
+        dataTable.api().rows.add(data)
     });
     window.socket = socket
 })
