@@ -96,6 +96,7 @@ $(() => {
             text:arr[arr.length-1]
         }))
         trueMedia.push(currentMedia);
+        dataTable.draw();
     })
     $('#falsemedia').click(()=>{
         if(falseMedia.find((m)=>{
@@ -110,6 +111,7 @@ $(() => {
             text:arr[arr.length-1]
         }))
         falseMedia.push(currentMedia);
+        dataTable.draw();
     })
     $('#deleterule').click(()=>{
         var selectName = $('#ruleSelect').val();
@@ -120,6 +122,7 @@ $(() => {
             }))!==-1){
             $(`option:contains('${$('#ruleSelect').val()}')`).remove();
             falseMedia.splice(index,1);
+            dataTable.draw();
             return
         }
         if((index = trueMedia.findIndex((m)=>{
@@ -128,6 +131,7 @@ $(() => {
             }))!==-1){
             $(`option:contains('${$('#ruleSelect').val()}')`).remove();
             trueMedia.splice(index,1);
+            dataTable.draw();
             return
         }
     })

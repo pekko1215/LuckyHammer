@@ -104,8 +104,8 @@
       <file leaf-file-name="LuckyHammer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/LuckyHammer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="136" column="40" lean-forward="true" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+            <state relative-caret-position="263">
+              <caret line="122" column="58" lean-forward="false" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
               <folding>
                 <element signature="e#0#46#0" expanded="false" />
                 <element signature="e#190#708#0" expanded="false" />
@@ -334,7 +334,7 @@
       <updated>1518143481175</updated>
       <workItem from="1518143483150" duration="4016000" />
       <workItem from="1518160687141" duration="378000" />
-      <workItem from="1518180734083" duration="23567000" />
+      <workItem from="1518180734083" duration="23724000" />
     </task>
     <task id="LOCAL-00001" summary="oauth">
       <created>1518183012359</created>
@@ -455,11 +455,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518359165788</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="・多分エラーは消ええる">
+      <created>1518359542448</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1518359542448</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27961000" />
+    <option name="totallyTimeSpent" value="28118000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="669" y="0" width="938" height="867" extended-state="0" />
@@ -507,7 +514,8 @@
     <MESSAGE value="・ruleDelete" />
     <MESSAGE value="・カスタムフィルター" />
     <MESSAGE value="・console" />
-    <option name="LAST_COMMIT_MESSAGE" value="・console" />
+    <MESSAGE value="・多分エラーは消ええる" />
+    <option name="LAST_COMMIT_MESSAGE" value="・多分エラーは消ええる" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -714,8 +722,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/LuckyHammer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="136" column="40" lean-forward="true" selection-start-line="136" selection-start-column="40" selection-end-line="136" selection-end-column="40" />
+        <state relative-caret-position="263">
+          <caret line="122" column="58" lean-forward="false" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
           <folding>
             <element signature="e#0#46#0" expanded="false" />
             <element signature="e#190#708#0" expanded="false" />
