@@ -2,12 +2,12 @@
  * Created by pekko1215 on 2018/02/10.
  */
 const twitter = require('twitter')
-module.exports = function (app, http, socket, sessionStore) {
+module.exports = (app, http, socket, sessionStore)=> {
     const io = socket.listen(http);
-    io.use(function (socket, next) {
+    io.use((socket, next)=> {
         app.session(socket.request, socket.request.res, next);
     });
-    io.sockets.on('connection', function (socket) {
+    io.sockets.on('connection', (socket)=> {
         var stream = null;
         var tokens = require('./tokens').twitter;
         var {session} = socket.request
@@ -30,12 +30,11 @@ module.exports = function (app, http, socket, sessionStore) {
             if (stream) {
                 stream.destroy()
             }
-            client.get('users/show', {screen_name: option.target}, (err, data) => {
-                if (err) {
-                    socket.emit('error', err);
-                    return
-                }
-                client.stream('statuses/filter', {follow: data.id}, function (_stream) {
+            client.get('users/show', {screen_name: option.target})
+                .then((result) => {
+                    return client.stream('statuses/filter', {follow: data.id})
+                })
+                .then((_stream) => {
                     stream = _stream;
                     stream.on('data', (data) => {
                         if (data.retweeted_status) {
@@ -43,25 +42,24 @@ module.exports = function (app, http, socket, sessionStore) {
                         }
                         socket.emit('tweet', data);
                     })
+                    stream.on('error', (e) => {
+                        throw e;
+                    })
                 })
-                stream.on('error', (e) => {
+                .catch((e) => {
                     socket.emit('error', e)
                 })
-            })
         })
-        socket.on('stop',function(){
+        socket.on('stop', () =>{
             if (stream) {
                 stream.destroy()
             }
         })
-        socket.on('oembed',function(id,next){
-            client.get('statuses/oembed',{id:id},function (err,resp) {
-                if(err){
-                    socket.emit('error',err);
-                    return
-                }
-                next(resp);
-            })
+        socket.on('oembed',(id, next)=> {
+            client.get('statuses/oembed', {id: id})
+                .then((resp)=>{
+                    next(resp);
+                })
         })
     })
 }
