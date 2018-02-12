@@ -1,5 +1,5 @@
-module.exports = function(app,server,passport){
-    app.get('/',function(req,res,next){
+module.exports = (app,server,passport)=>{
+    app.get('/',(req,res,next)=>{
         if(req.user){
             next();
             return;
@@ -11,7 +11,7 @@ module.exports = function(app,server,passport){
         successRedirect:'/',
         failureRedirect:'/error'
     }))
-    app.get('/error',function(req,res,next){
+    app.get('/error',(req,res,next)=>{
         res.send("失敗じゃ")
     })
 }

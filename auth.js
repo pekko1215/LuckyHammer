@@ -1,12 +1,12 @@
 const TwitterStrategy = require('passport-twitter')
 const session = require('express-session')
-module.exports = function(app,passport,sessionStore){
+module.exports = (app,passport,sessionStore)=>{
 
-    passport.serializeUser(function(user,done){
+    passport.serializeUser((user,done)=>{
         done(null,user);
     })
 
-    passport.deserializeUser(function(obj,done){
+    passport.deserializeUser((obj,done)=>{
         done(null,obj)
     })
 
@@ -14,7 +14,6 @@ module.exports = function(app,passport,sessionStore){
         require('./tokens').twitter,
         (token,tokenSecret,profile,done)=>{
             profile.twitter_token = token;
-            profile.displayName = profile.displayName
             profile.twitter_token_secret = tokenSecret;
             process.nextTick(()=>{
                 return done(null,profile)
