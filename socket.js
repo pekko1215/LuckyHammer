@@ -32,7 +32,7 @@ module.exports = (app, http, socket, sessionStore)=> {
             }
             client.get('users/show', {screen_name: option.target})
                 .then((result) => {
-                    return client.stream('statuses/filter', {follow: data.id})
+                    return client.stream('statuses/filter', {follow: result.id})
                 })
                 .then((_stream) => {
                     stream = _stream;

@@ -41,11 +41,11 @@ $(() => {
                 var $img = $('<img/>', {src: media.media_url_https, width: "32px"});
                 $td.append($img)
             })
-            $nRow.click(()=>{
-                socket.emit('oembed',aData.id_str,(resp)=>{
+            $nRow.click(() => {
+                socket.emit('oembed', aData.id_str, (resp) => {
                     $('#embedContainer').html(resp.html);
-                    $('#truemedia').prop('disabled',false);
-                    $('#falsemedia').prop('disabled',false);
+                    $('#truemedia').prop('disabled', false);
+                    $('#falsemedia').prop('disabled', false);
                     currentMedia = aData;
                 })
             })
@@ -83,66 +83,66 @@ $(() => {
         $('#start').prop('disabled', false);
         $('#stop').prop('disabled', true);
     })
-    $('#truemedia').click(()=>{
-        if(falseMedia.find((m)=>{
+    $('#truemedia').click(() => {
+        if (falseMedia.find((m) => {
                 return m.id_str == currentMedia.id_str
-            })||trueMedia.find((m)=>{
+            }) || trueMedia.find((m) => {
                 return m.id_str == currentMedia.id_str
-            })){
+            })) {
             return;
         }
         var arr = currentMedia.entities.media[0].media_url_https.split('/');
-        $('#truemediaOption').append($('<option/>',{
-            text:arr[arr.length-1]
+        $('#truemediaOption').append($('<option/>', {
+            text: arr[arr.length - 1]
         }))
         trueMedia.push(currentMedia);
         dataTable.draw();
     })
-    $('#falsemedia').click(()=>{
-        if(falseMedia.find((m)=>{
+    $('#falsemedia').click(() => {
+        if (falseMedia.find((m) => {
                 return m.id_str == currentMedia.id_str
-            })||trueMedia.find((m)=>{
+            }) || trueMedia.find((m) => {
                 return m.id_str == currentMedia.id_str
-            })){
+            })) {
             return;
         }
         var arr = currentMedia.entities.media[0].media_url_https.split('/');
-        $('#falsemediaOption').append($('<option/>',{
-            text:arr[arr.length-1]
+        $('#falsemediaOption').append($('<option/>', {
+            text: arr[arr.length - 1]
         }))
         falseMedia.push(currentMedia);
         dataTable.draw();
     })
-    $('#deleterule').click(()=>{
+    $('#deleterule').click(() => {
         var selectName = $('#ruleSelect').val();
         var index;
-        if((index = falseMedia.findIndex((m)=>{
+        if ((index = falseMedia.findIndex((m) => {
                 var arr = m.entities.media[0].media_url_https.split('/');
-                return  arr[arr.length-1]=== selectName
-            }))!==-1){
+                return arr[arr.length - 1] === selectName
+            })) !== -1) {
             $(`option:contains('${$('#ruleSelect').val()}')`).remove();
-            falseMedia.splice(index,1);
+            falseMedia.splice(index, 1);
             dataTable.draw();
             return
         }
-        if((index = trueMedia.findIndex((m)=>{
+        if ((index = trueMedia.findIndex((m) => {
                 var arr = m.entities.media[0].media_url_https.split('/');
-                return  arr[arr.length-1]=== selectName
-            }))!==-1){
+                return arr[arr.length - 1] === selectName
+            })) !== -1) {
             $(`option:contains('${$('#ruleSelect').val()}')`).remove();
-            trueMedia.splice(index,1);
+            trueMedia.splice(index, 1);
             dataTable.draw();
             return
         }
     })
-    $.fn.dataTable.ext.search.push(function(setting,data,dataIndex){
+    $.fn.dataTable.ext.search.push(function (setting, data, dataIndex) {
         data = dataTable.fnGetData()[dataIndex]
-        if(trueMedia.length){
-            return trueMedia.some((m)=>{
+        if (trueMedia.length) {
+            return trueMedia.some((m) => {
                 return data.entities.media[0].media_url_https === m.entities.media[0].media_url_https;
             })
         }
-        return falseMedia.every((m)=>{
+        return falseMedia.every((m) => {
             return data.entities.media[0].media_url_https !== m.entities.media[0].media_url_https;
         })
     })
